@@ -9,7 +9,7 @@ from time import sleep
 import types
 import time
 
-#¸ù¾İsuid»ñÈ¡ÓÃ»§Ãû
+#æ ¹æ®suidè·å–ç”¨æˆ·å
 def getUserName(suid):
 	userName = ""
 	#params = urllib.urlencode({'token': 'u~p36u0UjaIvJwxYJpp1wkGdbdeX7LbL','suid':'Z1fV~4uV6WRqfs3xndogdA__','version': '6.6.0.1','per':20})
@@ -20,7 +20,7 @@ def getUserName(suid):
 	#print userName
 	return userName
 
-#½«ÒÔºÁÃëÎªµ¥Î»µÄÊ±¼ä´Á×ª»»ÎªÈÕÆÚ¸ñÊ½
+#å°†ä»¥æ¯«ç§’ä¸ºå•ä½çš„æ—¶é—´æˆ³è½¬æ¢ä¸ºæ—¥æœŸæ ¼å¼
 def convertToDate(timestamp):
 	#theTime = jdat['result'][i]['channel']['ext']['finishTime']
 	theDate = str(timestamp)[:-3]
@@ -29,14 +29,14 @@ def convertToDate(timestamp):
 	return otherStyleTime
 
 
-#ÕÒÊ×Ò³ÆµµÀ³¬¹ı5·ÖÖÓµÄÊÓÆµ*****************************************
+#æ‰¾é¦–é¡µé¢‘é“è¶…è¿‡5åˆ†é’Ÿçš„è§†é¢‘*****************************************
 def testFenlei():
 	categorys = [114]
 	theMax = 0
 	thecount = 1
 	for cat in categorys:
 		for var in range(1,2000):
-			#Ê×Ò³¸÷¸öÆµµÀ
+			#é¦–é¡µå„ä¸ªé¢‘é“
 			params = urllib.urlencode({'cateid': cat, 'token': 'OIynN5UcxhH082kWvIw7YWP4CTHYSeKI', 'version': '6.6.0.1','page': var,'per':20})
 			dat = urllib.urlopen("http://api.miaopai.com/m/cate2_channel.json?%s" % params)
 			jdat = json.loads(dat.read())
@@ -52,8 +52,8 @@ def testFenlei():
 					if theTime > theMax:
 						theMax = theTime
 					if theTime >= 300:
-						print "channel : " + jdat['name'] + "µÚ " + str(var) + "Ò³"
-						print "Ê±³¤ : " + str(theTime) + " Ãë"
+						print "channel : " + jdat['name'] + "ç¬¬ " + str(var) + "é¡µ"
+						print "æ—¶é•¿ : " + str(theTime) + " ç§’"
 						print "url : " + jdat['result'][i]['channel']['stream']['base'] + ".mp4"
 						print "time : " + jdat['result'][i]['channel']['ext']['finishTimeNice']
 						print "userName : " + jdat['result'][i]['channel']['ext']['owner']['nick']
@@ -61,7 +61,7 @@ def testFenlei():
 							print "t : " + jdat['result'][i]['channel']['ext']['t']
 							print "ft : " + jdat['result'][i]['channel']['ext']['ft']
 						except:
-							print "tºÍft×Ö¶Î°üº¬ÌØÊâ×Ö·û"
+							print "tå’Œftå­—æ®µåŒ…å«ç‰¹æ®Šå­—ç¬¦"
 						print "pic : " + jdat['result'][i]['channel']['pic']['base'] + ".jpg"
 						print "***********************************************"
 						print ""
@@ -76,12 +76,12 @@ def testFenlei():
 	print theMax
 
 
-#ÕÒÈÈÃÅ³¬¹ı5·ÖÖÓµÄÊÓÆµ****************************************
+#æ‰¾çƒ­é—¨è¶…è¿‡5åˆ†é’Ÿçš„è§†é¢‘****************************************
 def testHot():
 	theMax = 0
 	thecount = 1
 	for var in range(1,2000):
-		#Ê×Ò³ÈÈÃÅ
+		#é¦–é¡µçƒ­é—¨
 		params = urllib.urlencode({'token': 'OIynN5UcxhH082kWvIw7YWP4CTHYSeKI', 'version': '6.6.0.1','page': var,'per':20})
 		dat = urllib.urlopen("http://api.miaopai.com/m/v6_hot_channel.json?%s" % params)
 		jdat = json.loads(dat.read())
@@ -97,8 +97,8 @@ def testHot():
 				if theTime > theMax:
 					theMax = theTime
 				if theTime >= 300:
-					print "channel : " + "ÈÈÃÅ" + "µÚ " + str(var) + "Ò³"
-					print "Ê±³¤ : " + str(theTime) + " Ãë"
+					print "channel : " + "çƒ­é—¨" + "ç¬¬ " + str(var) + "é¡µ"
+					print "æ—¶é•¿ : " + str(theTime) + " ç§’"
 					print "url : " + jdat['result'][i]['channel']['stream']['base'] + ".mp4"
 					theTime = jdat['result'][i]['channel']['ext']['finishTime']
 					theDate = convertToDate(theTime)
@@ -108,7 +108,7 @@ def testHot():
 						print "t : " + jdat['result'][i]['channel']['ext']['t']
 						print "ft : " + jdat['result'][i]['channel']['ext']['ft']
 					except:
-						print "tºÍft×Ö¶Î´æÔÚÌØÊâ±àÂë"
+						print "tå’Œftå­—æ®µå­˜åœ¨ç‰¹æ®Šç¼–ç "
 					print "pic : " + jdat['result'][i]['channel']['pic']['base'] + ".jpg"
 					print "***********************************************"
 					print ""
@@ -123,7 +123,7 @@ def testHot():
 	print theMax
 
 
-#ÕÒ¸öÈËÖ÷Ò³³¬¹ı5·ÖÖÓµÄÊÓÆµ***************************************
+#æ‰¾ä¸ªäººä¸»é¡µè¶…è¿‡5åˆ†é’Ÿçš„è§†é¢‘***************************************
 def testMyPage(suid):
 	theMax = 0
 	timeflag = 0
@@ -151,10 +151,10 @@ def testMyPage(suid):
 				if theTime > theMax:
 					theMax = theTime
 				if theTime >= 300:
-					print getUserName(suid) + "µÚ " + str(page) + "Ò³"
+					print getUserName(suid) + "ç¬¬ " + str(page) + "é¡µ"
 					print 'timeFlag : ' + str(timeflagOld)
 					#print 'timeFlag : ' + str(jdat['result']['timeflag'])
-					print "Ê±³¤ : " + str(theTime) + " Ãë"
+					print "æ—¶é•¿ : " + str(theTime) + " ç§’"
 					print "url : " + jdat['result']['stream']['list'][i]['channel']['stream']['base'] + ".mp4"
 					print "time : " + jdat['result']['stream']['list'][i]['channel']['ext']['finishTimeNice']
 					print "t : " + jdat['result']['stream']['list'][i]['channel']['ext']['t']
@@ -175,7 +175,7 @@ def testMyPage(suid):
 
 
 
-#ÕÒĞüÉÍÁĞ±í³¬¹ı5·ÖÖÓµÄÊÓÆµ***************************************
+#æ‰¾æ‚¬èµåˆ—è¡¨è¶…è¿‡5åˆ†é’Ÿçš„è§†é¢‘***************************************
 def testRewordList(srwid):
 	theMax = 0
 	page = 1
@@ -198,8 +198,8 @@ def testRewordList(srwid):
 				if theTime > theMax:
 					theMax = theTime
 				if theTime >= 300:
-					print "µÚ : " + str(pageIndex) + "Ò³"
-					print "Ê±³¤ : " + str(theTime) + " Ãë"
+					print "ç¬¬ : " + str(pageIndex) + "é¡µ"
+					print "æ—¶é•¿ : " + str(theTime) + " ç§’"
 					print "url : " + jdat['result']['list'][i]['channel']['stream']['base'] + ".mp4"
 					theTime = jdat['result']['list'][i]['channel']['ext']['finishTime']
 					theDate = convertToDate(theTime)
@@ -208,11 +208,11 @@ def testRewordList(srwid):
 					try:
 						print "t : " + jdat['result']['list'][i]['channel']['ext']['t']
 					except:
-						print "t×Ö¶ÎÓĞÌØÊâ×Ö·û"
+						print "tå­—æ®µæœ‰ç‰¹æ®Šå­—ç¬¦"
 					try:
 						print "ft : " + jdat['result']['list'][i]['channel']['ext']['ft']
 					except:
-						print "ft×Ö¶ÎÓĞÌØÊâ×Ö·û"
+						print "ftå­—æ®µæœ‰ç‰¹æ®Šå­—ç¬¦"
 					print "pic : " + jdat['result']['list'][i]['channel']['pic']['base'] + ".jpg"
 					print "***********************************************"
 					print ""
@@ -228,7 +228,7 @@ def testRewordList(srwid):
 	print theMax
 
 
-#ºÏ¼¯Ò³ÃæÊÓÆµÊ±³¤²âÊÔ***************************************
+#åˆé›†é¡µé¢è§†é¢‘æ—¶é•¿æµ‹è¯•***************************************
 def testVideoColloctions(stpid):
 	theMax = 0
 	page = 1
@@ -249,8 +249,8 @@ def testVideoColloctions(stpid):
 				if theTime > theMax:
 					theMax = theTime
 				if theTime >= 300:
-					print "µÚ : " + str(page) + "Ò³"
-					print "Ê±³¤ : " + str(theTime) + " Ãë"
+					print "ç¬¬ : " + str(page) + "é¡µ"
+					print "æ—¶é•¿ : " + str(theTime) + " ç§’"
 					print "url : " + jdat['result'][i]['channel']['stream']['base'] + ".mp4"
 					theTime = jdat['result'][i]['channel']['ext']['finishTime']
 					theDate = convertToDate(theTime)
@@ -274,7 +274,7 @@ def testVideoColloctions(stpid):
 
 
 
-#»°ÌâÒ³ÃæÊÓÆµÊ±³¤²âÊÔ***************************************
+#è¯é¢˜é¡µé¢è§†é¢‘æ—¶é•¿æµ‹è¯•***************************************
 def testTopic(topicname):
 	theMax = 0
 	page = 1
@@ -295,8 +295,8 @@ def testTopic(topicname):
 				if theTime > theMax:
 					theMax = theTime
 				if theTime >= 300:
-					print "µÚ : " + str(page) + "Ò³"
-					print "Ê±³¤ : " + str(theTime) + " Ãë"
+					print "ç¬¬ : " + str(page) + "é¡µ"
+					print "æ—¶é•¿ : " + str(theTime) + " ç§’"
 					print "url : " + jdat['result'][i]['channel']['stream']['base'] + ".mp4"
 					theTime = jdat['result'][i]['channel']['ext']['finishTime']
 					theDate = convertToDate(theTime)
@@ -319,12 +319,12 @@ def testTopic(topicname):
 	print theMax
 
 
-#ÕÒÍ¬³Ç³¬¹ı5·ÖÖÓµÄÊÓÆµ*****************************************
+#æ‰¾åŒåŸè¶…è¿‡5åˆ†é’Ÿçš„è§†é¢‘*****************************************
 def testSameCity(orderby):
 	theMax = 0
 	thecount = 1
 	for var in range(1,10):
-		#Ê×Ò³¸÷¸öÆµµÀ
+		#é¦–é¡µå„ä¸ªé¢‘é“
 		params = urllib.urlencode({'token': 'OIynN5UcxhH082kWvIw7YWP4CTHYSeKI', 'version': '6.6.0.1','page': var,'per':20,'orderby':orderby})
 		dat = urllib.urlopen("http://api.miaopai.com/m/samecity_v6.json?%s" % params)
 		jdat = json.loads(dat.read())
@@ -339,8 +339,8 @@ def testSameCity(orderby):
 				if theTime > theMax:
 					theMax = theTime
 				if theTime >= 300:
-					print "Í¬³Ç : " + "µÚ " + str(var) + "Ò³"
-					print "Ê±³¤ : " + str(theTime) + " Ãë"
+					print "åŒåŸ : " + "ç¬¬ " + str(var) + "é¡µ"
+					print "æ—¶é•¿ : " + str(theTime) + " ç§’"
 					print "url : " + jdat['result'][i]['channel']['stream']['base'] + ".mp4"
 					print "time : " + jdat['result'][i]['channel']['ext']['finishTimeNice']
 					print "userName : " + jdat['result'][i]['channel']['ext']['owner']['nick']
@@ -348,7 +348,7 @@ def testSameCity(orderby):
 						print "t : " + jdat['result'][i]['channel']['ext']['t']
 						print "ft : " + jdat['result'][i]['channel']['ext']['ft']
 					except:
-						print "fºÍft×Ö¶Î°üº¬ÌØÊâ×Ö·û"
+						print "få’Œftå­—æ®µåŒ…å«ç‰¹æ®Šå­—ç¬¦"
 					print "pic : " + jdat['result'][i]['channel']['pic']['base'] + ".jpg"
 					print "***********************************************"
 					print ""
@@ -369,34 +369,32 @@ def testSameCity(orderby):
 
 
 #------------------------------------------
-#testFenlei()   #ÆµµÀ·ÖÀà²âÊÔ
+#testFenlei()   #é¢‘é“åˆ†ç±»æµ‹è¯•
 
 #------------------------------------------
-#testHot()       #Ê×Ò³ÈÈÃÅ
+#testHot()       #é¦–é¡µçƒ­é—¨
 
 #------------------------------------------
-#suid = 'Z1fV~4uV6WRqfs3xndogdA__'   #·²ÒæÍøÈ¤µÄsuid
-#suid = 'SBr3gTpwGbI53Lhyuz4xCg__'   #yiixia24000vµÄsuid
-#suid = 'AkwnpO4BXM4~G5BN' #Ô¶ºé88µÄsuid
+#suid = 'SBr3gTpwGbI53Lhyuz4xCg__'   #yiixia24000vçš„suid
 #suid = 'muQzRaQTXu5dFPbf'
-#testMyPage(suid)       #¸öÈËÒ³Ãæ
+#testMyPage(suid)       #ä¸ªäººé¡µé¢
 
 #-------------------------------------------
 #srwid = 'XrEmnRLbfqQ_'    
-#testRewordList(srwid)       #ĞüÉÍÒ³Ãæ
+#testRewordList(srwid)       #æ‚¬èµé¡µé¢
 
 #-------------------------------------------
 stpid = 'wOMjeIvel9HFcvUi'    
-testVideoColloctions(stpid)    #ºÏ¼¯Ò³Ãæ
+testVideoColloctions(stpid)    #åˆé›†é¡µé¢
 
 #-------------------------------------------
-#topicname = '°ëÔÂÅóÓÑ'    
-#testTopic(topicname)              #»°ÌâÒ³Ãæ
+#topicname = 'åŠæœˆæœ‹å‹'    
+#testTopic(topicname)              #è¯é¢˜é¡µé¢
 
 #-------------------------------------------
-#orderby = 'bscore'    #ÑÕÖµ
-#orderby = 'hot'    #ÈÈ¶È
-#testSameCity(orderby)   #Í¬³ÇÒ³ÃæÄÇ
+#orderby = 'bscore'    #é¢œå€¼
+#orderby = 'hot'    #çƒ­åº¦
+#testSameCity(orderby)   #åŒåŸé¡µé¢é‚£
 
 
 
@@ -409,30 +407,30 @@ testVideoColloctions(stpid)    #ºÏ¼¯Ò³Ãæ
 
 
 ########################################################################################################################################
-#http://api.miaopai.com/m/v6_hot_channel.json?token=OIynN5UcxhH082kWvIw7YWP4CTHYSeKI&refresh=3&version=6.6.0.1&page=2&per=20   #ÈÈÃÅ½Ó¿Ú
-#http://api.miaopai.com/m/cate2_channel.json?cateid=128&token=OIynN5UcxhH082kWvIw7YWP4CTHYSeKI&version=6.6.0.1&page=1&per=20   #ÆµµÀ½Ó¿Ú
-#http://api.miaopai.com/m/channel_forward_reward.json?token=u~p36u0UjaIvJwxYJpp1wkGdbdeX7LbL&suid=Z1fV~4uV6WRqfs3xndogdA__&version=6.6.0.1&timeflag=1475982730748&per=20 #¸öÈËÖ÷Ò³
-#http://api.miaopai.com/m/space_user_info.json?token=u~p36u0UjaIvJwxYJpp1wkGdbdeX7LbL&version=6.6.0.1&suid=Z1fV~4uV6WRqfs3xndogdA__  #¸öÈËÒ³Ãæ¸öÈËĞÅÏ¢
-#http://api.miaopai.com/m/getRewardVideos.json?filter=all&srwid=0v8jWapHanpBaPhk&token=u~p36u0UjaIvJwxYJpp1wkGdbdeX7LbL&pageSize=10&pageIndex=1&version=6.6.0.1  #ĞüÉÍÈ«²¿ÊÓÆµÁĞ±í
+#http://api.miaopai.com/m/v6_hot_channel.json?token=OIynN5UcxhH082kWvIw7YWP4CTHYSeKI&refresh=3&version=6.6.0.1&page=2&per=20   #çƒ­é—¨æ¥å£
+#http://api.miaopai.com/m/cate2_channel.json?cateid=128&token=OIynN5UcxhH082kWvIw7YWP4CTHYSeKI&version=6.6.0.1&page=1&per=20   #é¢‘é“æ¥å£
+#http://api.miaopai.com/m/channel_forward_reward.json?token=u~p36u0UjaIvJwxYJpp1wkGdbdeX7LbL&suid=Z1fV~4uV6WRqfs3xndogdA__&version=6.6.0.1&timeflag=1475982730748&per=20 #ä¸ªäººä¸»é¡µ
+#http://api.miaopai.com/m/space_user_info.json?token=u~p36u0UjaIvJwxYJpp1wkGdbdeX7LbL&version=6.6.0.1&suid=Z1fV~4uV6WRqfs3xndogdA__  #ä¸ªäººé¡µé¢ä¸ªäººä¿¡æ¯
+#http://api.miaopai.com/m/getRewardVideos.json?filter=all&srwid=0v8jWapHanpBaPhk&token=u~p36u0UjaIvJwxYJpp1wkGdbdeX7LbL&pageSize=10&pageIndex=1&version=6.6.0.1  #æ‚¬èµå…¨éƒ¨è§†é¢‘åˆ—è¡¨
 
-#ºÏ¼¯Óë»°ÌâµÄÇø±ğÔÚÓÚºÏ¼¯ÓĞ£¨type=0,stpid,topicname£©»°ÌâÓĞ£¨type=2,topicname£©;»°ÌâÈ±ÉÙtopicname²ÎÊıÎŞ·¨»ñÈ¡Êı¾İ
-#http://api.miaopai.com/m/v2_topic.json?topicname=%E7%8E%8B%E5%AE%9D%E5%BC%BA%E6%8C%87%E5%A6%BB%E5%AD%90%E5%87%BA%E8%BD%A8&token=u~p36u0UjaIvJwxYJpp1wkGdbdeX7LbL&version=6.6.0.1&page=1&type=0&per=20&stpid=GNIlmdwJfZyvWMqt  #ÊÓÆµºÏ¼¯Íõ±¦Ç¿Ö¸ÔğÆŞ×Ó³ö¹ì
-#http://api.miaopai.com/m/v2_topic.json?topicname=%E7%8E%8B%E5%AE%9D%E5%BC%BA%E6%8C%87%E5%A6%BB%E5%AD%90%E5%87%BA%E8%BD%A8&token=u~p36u0UjaIvJwxYJpp1wkGdbdeX7LbL&version=6.6.0.1&page=1&type=2&per=20  #»°ÌâÍõ±¦Ç¿Ö¸ÔğÆŞ×Ó³ö¹ì
-#http://api.miaopai.com/m/samecity_v6.json?token=u~p36u0UjaIvJwxYJpp1wkGdbdeX7LbL&orderby=bscore&version=6.6.0.1&page=1&per=20  #Í¬³Ç²âÊÔ
+#åˆé›†ä¸è¯é¢˜çš„åŒºåˆ«åœ¨äºåˆé›†æœ‰ï¼ˆtype=0,stpid,topicnameï¼‰è¯é¢˜æœ‰ï¼ˆtype=2,topicnameï¼‰;è¯é¢˜ç¼ºå°‘topicnameå‚æ•°æ— æ³•è·å–æ•°æ®
+#http://api.miaopai.com/m/v2_topic.json?topicname=%E7%8E%8B%E5%AE%9D%E5%BC%BA%E6%8C%87%E5%A6%BB%E5%AD%90%E5%87%BA%E8%BD%A8&token=u~p36u0UjaIvJwxYJpp1wkGdbdeX7LbL&version=6.6.0.1&page=1&type=0&per=20&stpid=GNIlmdwJfZyvWMqt  #è§†é¢‘åˆé›†ç‹å®å¼ºæŒ‡è´£å¦»å­å‡ºè½¨
+#http://api.miaopai.com/m/v2_topic.json?topicname=%E7%8E%8B%E5%AE%9D%E5%BC%BA%E6%8C%87%E5%A6%BB%E5%AD%90%E5%87%BA%E8%BD%A8&token=u~p36u0UjaIvJwxYJpp1wkGdbdeX7LbL&version=6.6.0.1&page=1&type=2&per=20  #è¯é¢˜ç‹å®å¼ºæŒ‡è´£å¦»å­å‡ºè½¨
+#http://api.miaopai.com/m/samecity_v6.json?token=u~p36u0UjaIvJwxYJpp1wkGdbdeX7LbL&orderby=bscore&version=6.6.0.1&page=1&per=20  #åŒåŸæµ‹è¯•
 
 
-#ĞüÉÍÁĞ±í ---- ¿É²âÊÔ ----  ÓĞ·½·¨
-#¹Ø×¢Ò³Ãæ ---- ¿É²âÊÔ ----  ÓĞ·½·¨
-#Í¬³ÇÒ³Ãæ ---- ¿É²âÊÔ 
-#»°ÌâÒ³Ãæ ---- ¿É²âÊÔ ----  ÓĞ·½·¨
-#ĞüÉÍÒ³Ãæ ---- ¿É²âÊÔ ----  ÓĞ·½·¨
-#ÊÓÆµºÏ¼¯ ---- ¿É²âÊÔ
-#ËÑË÷Ò³Ãæ ---- ¿É²âÊÔ ----  ÓĞ·½·¨
-#¸öÈËÖ÷Ò³ ---- ¿É²âÊÔ ----  ok
-#ÈÈ°ñÒ³Ãæ ---- ¿É²âÊÔ ----  ok£¨×îºóÒ»¸öÊÓÆµ¶¼²»ÔÚ8ÔÂ1ºÅÖ®Ç°£©
-#ÆµµÀ·ÖÀàÒ³Ãæ 
-#·¢ÏÖÒ³Ãæ ---- ÅÅ³ı£¨Ö»°üº¬»°ÌâºÍºÏ¼¯£©
-#ÆµµÀ´ïÈËÊÓÆµ·âÃæ ----  ¿É²âÊÔ ----  ÓĞ·½·¨£¨ºóÌ¨ÅäÖÃÒ»¸ö´óÓÚ5·ÖÖÓµÄÊÓÆµ£©
+#æ‚¬èµåˆ—è¡¨ ---- å¯æµ‹è¯• ----  æœ‰æ–¹æ³•
+#å…³æ³¨é¡µé¢ ---- å¯æµ‹è¯• ----  æœ‰æ–¹æ³•
+#åŒåŸé¡µé¢ ---- å¯æµ‹è¯• 
+#è¯é¢˜é¡µé¢ ---- å¯æµ‹è¯• ----  æœ‰æ–¹æ³•
+#æ‚¬èµé¡µé¢ ---- å¯æµ‹è¯• ----  æœ‰æ–¹æ³•
+#è§†é¢‘åˆé›† ---- å¯æµ‹è¯•
+#æœç´¢é¡µé¢ ---- å¯æµ‹è¯• ----  æœ‰æ–¹æ³•
+#ä¸ªäººä¸»é¡µ ---- å¯æµ‹è¯• ----  ok
+#çƒ­æ¦œé¡µé¢ ---- å¯æµ‹è¯• ----  okï¼ˆæœ€åä¸€ä¸ªè§†é¢‘éƒ½ä¸åœ¨8æœˆ1å·ä¹‹å‰ï¼‰
+#é¢‘é“åˆ†ç±»é¡µé¢ 
+#å‘ç°é¡µé¢ ---- æ’é™¤ï¼ˆåªåŒ…å«è¯é¢˜å’Œåˆé›†ï¼‰
+#é¢‘é“è¾¾äººè§†é¢‘å°é¢ ----  å¯æµ‹è¯• ----  æœ‰æ–¹æ³•ï¼ˆåå°é…ç½®ä¸€ä¸ªå¤§äº5åˆ†é’Ÿçš„è§†é¢‘ï¼‰
 
 
 
